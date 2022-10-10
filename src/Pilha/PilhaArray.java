@@ -6,8 +6,7 @@ public class PilhaArray implements Pilha {
 	private int posicaoTopo= -1;
 	
 	public PilhaArray(int tamanho) {
-		this.PilhaPikachu = new Object[tamanho];
-		
+		this.PilhaPikachu = new Object[tamanho];		
 		//criando uma pilha com o tamanho que foi passado
 	}
 		
