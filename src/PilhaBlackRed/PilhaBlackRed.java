@@ -17,7 +17,7 @@ public class PilhaBlackRed implements PilhaBR {
 	 * ==========================================================
 	 */
 
-	@Override
+	
 	public int sizeBlack() {
 		//quantos elementos tem dentro da pilha
 		return posicaoTopoBlack - 1;
@@ -32,22 +32,22 @@ public class PilhaBlackRed implements PilhaBR {
 		return false;
 	}
 
-	@Override
+	
 	public Object posicaotTopBlack() throws PilhaBlackEnception {
 		return this.posicaoTopoBlack;
 		
 	}
 
-	@Override
+	
 	public void pushBlack(Object elementoBlack) {
 		//Adiciona um elemento na pilhaBlack
 
 		if(this.posicaoTopoBlack - 1 == this.posicaoTopoRed) {
-			throw new PilhaBlackEnception("Pilha Cheia");
-		} else {
-			this.posicaoTopoBlack = this.posicaoTopoBlack - 1;
-			this.PilhaBlackRed[posicaoTopoBlack] = elementoBlack;
+			this.AumentarTamanho();
 		}
+		this.posicaoTopoBlack = this.posicaoTopoBlack - 1;
+		this.PilhaBlackRed[posicaoTopoBlack] = elementoBlack;
+	
 		
 	}
 			
@@ -58,9 +58,7 @@ public class PilhaBlackRed implements PilhaBR {
 		}else {
 			Object Temporario = PilhaBlackRed[posicaoTopoBlack];
 			this.PilhaBlackRed[this.posicaoTopoBlack] = null;
-			this.posicaoTopoBlack = this.posicaoTopoBlack + 1;
-			
-					
+			this.posicaoTopoBlack = this.posicaoTopoBlack + 1;					
 			return Temporario;
 			
 		}
@@ -71,13 +69,13 @@ public class PilhaBlackRed implements PilhaBR {
 	 * ===========================================================
 	*/
 	
-	@Override
+	
 	public int sizeRed() {
 		//quantos elementos tem dentro da pilha
 		return posicaoTopoRed + 1;
 	}
 
-	@Override
+	
 	public boolean isEmptyRed() {
 		if(this.posicaoTopoRed == -1) {
 			return true;
@@ -90,15 +88,15 @@ public class PilhaBlackRed implements PilhaBR {
 		return this.posicaoTopoRed;
 	}
 	
-	@Override
+	
 	public void pushRed(Object elementoRed) {
 		//Adiciona um elemento na pilhaRed
 		if(this.posicaoTopoRed + 1 == this.posicaoTopoBlack) {
-			throw new PilhaBlackEnception("Pilha Cheia");
-		} else {
+			this.AumentarTamanho();
+		} 
 			this.posicaoTopoRed = this.posicaoTopoRed + 1;
 			this.PilhaBlackRed[posicaoTopoRed] = elementoRed;
-		}
+		
 		
 	}
 	
@@ -120,18 +118,25 @@ public class PilhaBlackRed implements PilhaBR {
 	}
 	
 	public void AumentarTamanho() {				
-		if(posicaoTopoRed == posicaoTopoBlack) {
-			//essa condicao verifica se esta cheia?
-			
-			int NovoTamanho = PilhaBlackRed.length*2;
+					
+			int NovoTamanho = this.PilhaBlackRed.length*2;
 			Object NovaPilhaBlackRed[]= new Object[NovoTamanho];
 			
-			for(int i=0;i<PilhaBlackRed.length;i++) {
-				NovaPilhaBlackRed[i] = PilhaBlackRed[i];
-				PilhaBlackRed = NovaPilhaBlackRed;				
+			for(int i=0;i<=this.posicaoTopoRed;i++) {
+				NovaPilhaBlackRed[i] = this.PilhaBlackRed[i];
 			}
 			
-		}
+			//pega a ultima posicao do topo para fazer a copia da pilha preta
+			NovoTamanho = NovoTamanho - 1;
+			
+			//copia a pilha preta para o novo array
+			for(int i=this.PilhaBlackRed.length - 1;i >= this.posicaoTopoBlack;i--) {
+				NovaPilhaBlackRed[NovoTamanho--] = this.PilhaBlackRed[i];
+			}
+			//substituindo o array antigo pelo array novo e reinicia o topo do preto
+			this.PilhaBlackRed = NovaPilhaBlackRed;				
+			this.posicaoTopoBlack = NovoTamanho +1;
+		
 	}
 	
 	
