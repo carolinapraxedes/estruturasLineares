@@ -12,6 +12,11 @@ public class PilhaBlackRedTest {
 		
 		pilha.pushRed("blala");
 		
+		
+		System.out.println(pilha.posicaoTopRed());
+		System.out.println(pilha.posicaotTopBlack());
+		
+		
 
 
 		pilha.showPilha();

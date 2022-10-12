@@ -23,7 +23,6 @@ public class PilhaBlackRed implements PilhaBR {
 		return posicaoTopoBlack - 1;
 		
 	}
-
 	
 	public boolean isEmptyBlack() {
 		//verifica se há elementos dentro da pilha
@@ -51,10 +50,7 @@ public class PilhaBlackRed implements PilhaBR {
 		}
 		
 	}
-		
-	
-
-	
+			
 	public Object popBlack() throws PilhaBlackEnception {
 		//Remove um elemento da pilha
 		if(this.isEmptyBlack()) {
@@ -89,10 +85,9 @@ public class PilhaBlackRed implements PilhaBR {
 		return false;
 	}
 	
-
-	@Override
+	
 	public Object posicaoTopRed() throws PilhaRedException {
-		return this.posicaoTopRed();
+		return this.posicaoTopoRed;
 	}
 	
 	@Override
@@ -106,7 +101,6 @@ public class PilhaBlackRed implements PilhaBR {
 		}
 		
 	}
-
 	
 	public Object popRed() throws PilhaRedException {
 		//Remove um elemento da pilha
@@ -124,16 +118,19 @@ public class PilhaBlackRed implements PilhaBR {
 	public int size() {
 		return posicaoTopoRed + posicaoTopoBlack;
 	}
-	public void AumentarTamanho(int novoTamanho) {
-		//criando um novo array
-		int novoTamanho
-		
-		if(posicaoTopRed === posicaoTopBlack) {
-			Object NovaPilhaBlackRed[];
+	
+	public void AumentarTamanho() {				
+		if(posicaoTopoRed == posicaoTopoBlack) {
+			//essa condicao verifica se esta cheia?
+			
+			int NovoTamanho = PilhaBlackRed.length*2;
+			Object NovaPilhaBlackRed[]= new Object[NovoTamanho];
+			
 			for(int i=0;i<PilhaBlackRed.length;i++) {
 				NovaPilhaBlackRed[i] = PilhaBlackRed[i];
-				PilhaBlackRed == NovaPilhaBlackRed;
+				PilhaBlackRed = NovaPilhaBlackRed;				
 			}
+			
 		}
 	}
 	
