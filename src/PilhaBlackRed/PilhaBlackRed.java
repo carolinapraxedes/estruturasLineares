@@ -1,6 +1,5 @@
 package PilhaBlackRed;
 
-import Pilha.PilhaVaziaExcecao;
 
 public class PilhaBlackRed implements PilhaBR {
 	private Object PilhaBlackRed[];
@@ -12,6 +11,11 @@ public class PilhaBlackRed implements PilhaBR {
 		this.posicaoTopoBlack = tamanho;
 		//criando uma pilha com o tamanho que foi passado
 	}
+	
+	/* ==========================================================
+	 * PILHA BLACK
+	 * ==========================================================
+	 */
 
 	@Override
 	public int sizeBlack() {
@@ -20,7 +24,7 @@ public class PilhaBlackRed implements PilhaBR {
 		
 	}
 
-	@Override
+	
 	public boolean isEmptyBlack() {
 		//verifica se há elementos dentro da pilha
 		if(this.posicaoTopoBlack == this.PilhaBlackRed.length) {
@@ -50,39 +54,99 @@ public class PilhaBlackRed implements PilhaBR {
 		
 	
 
-	@Override
+	
 	public Object popBlack() throws PilhaBlackEnception {
-		// TODO Auto-generated method stub
-		return null;
+		//Remove um elemento da pilha
+		if(this.isEmptyBlack()) {
+			throw new PilhaBlackEnception("Pilha Vazia");
+		}else {
+			Object Temporario = PilhaBlackRed[posicaoTopoBlack];
+			this.PilhaBlackRed[this.posicaoTopoBlack] = null;
+			this.posicaoTopoBlack = this.posicaoTopoBlack + 1;
+			
+					
+			return Temporario;
+			
+		}
 	}
-
+	
+	/*============================================================
+	 * PILHA RED
+	 * ===========================================================
+	*/
+	
 	@Override
 	public int sizeRed() {
-		// TODO Auto-generated method stub
-		return 0;
+		//quantos elementos tem dentro da pilha
+		return posicaoTopoRed + 1;
 	}
 
 	@Override
 	public boolean isEmptyRed() {
-		// TODO Auto-generated method stub
+		if(this.posicaoTopoRed == -1) {
+			return true;
+		}
 		return false;
 	}
+	
 
 	@Override
 	public Object posicaoTopRed() throws PilhaRedException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.posicaoTopRed();
 	}
-
+	
 	@Override
 	public void pushRed(Object elementoRed) {
-		// TODO Auto-generated method stub
+		//Adiciona um elemento na pilhaRed
+		if(this.posicaoTopoRed + 1 == this.posicaoTopoBlack) {
+			throw new PilhaBlackEnception("Pilha Cheia");
+		} else {
+			this.posicaoTopoRed = this.posicaoTopoRed + 1;
+			this.PilhaBlackRed[posicaoTopoRed] = elementoRed;
+		}
 		
 	}
 
-	@Override
+	
 	public Object popRed() throws PilhaRedException {
-		// TODO Auto-generated method stub
-		return null;
+		//Remove um elemento da pilha
+			if(this.isEmptyRed()) {
+				throw new PilhaRedException("Pilha Vazia");
+			}else {
+				Object Temporario = PilhaBlackRed[posicaoTopoRed];
+				this.PilhaBlackRed[this.posicaoTopoRed] = null;
+				this.posicaoTopoRed = this.posicaoTopoRed - 1;
+								
+				return Temporario;
+			}
+		}
+
+	public int size() {
+		return posicaoTopoRed + posicaoTopoBlack;
+	}
+	public void AumentarTamanho(int novoTamanho) {
+		//criando um novo array
+		int novoTamanho
+		
+		if(posicaoTopRed === posicaoTopBlack) {
+			Object NovaPilhaBlackRed[];
+			for(int i=0;i<PilhaBlackRed.length;i++) {
+				NovaPilhaBlackRed[i] = PilhaBlackRed[i];
+				PilhaBlackRed == NovaPilhaBlackRed;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	public void showPilha() {
+		
+		for(int i=0;i< this.PilhaBlackRed.length;i++) {
+			
+			System.out.println("["+PilhaBlackRed[i]+"]");
+			
+		}
 	}
 }
