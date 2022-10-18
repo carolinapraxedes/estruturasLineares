@@ -18,15 +18,6 @@ public class PilhaBlackRedTest {
 		pilha.pushBlack("teste preto");
 		pilha.pushBlack("é o preto");
 		
-		
-		
-		
-
-		
-
-		
-		
-
 
 		pilha.showPilha();
 
