@@ -8,7 +8,7 @@ public class PilhaVector implements IPilhaVector{
 	
 	public PilhaVector() {
 		pilhaVector = new Vector<>();
-		pilhaVector.add(0);
+	
 		
 	}
 		
@@ -26,11 +26,9 @@ public class PilhaVector implements IPilhaVector{
 
 	public void push(Object item) {
 		//adiciona elemento
-		if(pilhaVector.size() == 0) {
-			throw new PilhaVaziaExcecao("Pilha Vazia");
-		}else {			
+		
 			this.pilhaVector.add(item);
-		}
+
 				
 	}
 
