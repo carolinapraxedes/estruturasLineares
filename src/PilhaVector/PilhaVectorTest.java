@@ -10,6 +10,10 @@ public class PilhaVectorTest {
 		novaPilha.push("GABRIEL");
 		novaPilha.push("CLAUDIO");
 		novaPilha.push("CULLEN");
+		novaPilha.pop();
+		novaPilha.pop();
+		novaPilha.pop();
+		novaPilha.pop();
 		novaPilha.showPilha();
 		
 
