@@ -7,17 +7,23 @@ public class QueueTest {
 		
 		newQueue.Enqueue("teste");
 		newQueue.Enqueue("teste sara");
+		newQueue.Enqueue("teste guigui");
+		newQueue.Denqueue();
+		newQueue.Denqueue();
+		newQueue.Denqueue();
+		newQueue.Enqueue("teste guigui");
+		newQueue.Enqueue("teste guigui");
+		newQueue.Enqueue("teste guigui");
+		newQueue.Enqueue("teste guigui");
+		newQueue.Enqueue("teste guigui5");
+		newQueue.Enqueue("teste jero");
+		newQueue.Enqueue("teste mis");
+
 		
-		newQueue.Enqueue("arnold teste");
-		newQueue.Enqueue("blabla");
-		
-		newQueue.Denqueue();
-		newQueue.Denqueue();
-		newQueue.Denqueue();
-		newQueue.Denqueue();
+
+				
 			
-		
-		newQueue.Enqueue("blabla");
+
 		newQueue.showQueue();
 	}
 

@@ -4,7 +4,9 @@ public class QueueArray implements IQueue{
 	int sizeArray;
 	int start=0;
 	int end=0;
-	Object QueueElements[];
+	
+	 Object QueueElements[];
+	
 	
 	public QueueArray(int sizeArray) {
 		this.QueueElements = new Object[sizeArray];
@@ -13,7 +15,7 @@ public class QueueArray implements IQueue{
 
 	public void Enqueue(Object element) {
 		// enfileirar
-		if(sizeQueue() == sizeArray - 1) {
+		if(sizeQueue() == sizeArray-1) {
 			throw new fullQueueException("Fila Cheia");
 		}
 		this.QueueElements[end] = element;
@@ -27,12 +29,10 @@ public class QueueArray implements IQueue{
 		if(isEmptyQueue()) {
 			throw new emptyQueueException("Fila vazia");
 		}
-		
-		Object ObjectTemp = QueueElements[start];
-		QueueElements[start] = null;
-		start = (start+1)% sizeArray;
-		
-		return ObjectTemp;
+
+		QueueElements[start]=null;
+		start +=1;
+		return QueueElements;
 	}
 
 
@@ -44,7 +44,8 @@ public class QueueArray implements IQueue{
 		return (start==end);
 	}
 	
-	public void showQueue() {		
+	public void showQueue() {
+		
 		for(int i=0;i< this.QueueElements.length;i++) {			
 			System.out.print("["+ QueueElements[i] +"]");
 			
