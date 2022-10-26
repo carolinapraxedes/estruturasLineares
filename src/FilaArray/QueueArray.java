@@ -5,7 +5,7 @@ public class QueueArray implements IQueue{
 	int start=0;
 	int end=0;
 	
-	 Object QueueElements[];
+	Object QueueElements[];
 	
 	
 	public QueueArray(int sizeArray) {
@@ -16,7 +16,7 @@ public class QueueArray implements IQueue{
 	public void Enqueue(Object element) {
 		// enfileirar
 		if(sizeQueue() == sizeArray-1) {
-			throw new fullQueueException("Fila Cheia");
+			this.aumentarTamanho();
 		}
 		this.QueueElements[end] = element;
 		end = (end+1) % sizeArray;
@@ -42,6 +42,23 @@ public class QueueArray implements IQueue{
 
 	public boolean isEmptyQueue() {
 		return (start==end);
+	}
+	
+	public void aumentarTamanho() {
+		int newSize = this.QueueElements.length*2;
+		
+		Object newQueueElements[]= new Object[newSize];
+		//atualizando a posição do end no novo array
+		this.end = QueueElements.length-1;
+		this.start=0;
+		
+		for(int i=0;i<this.end;i++) {
+			newQueueElements[i]=this.QueueElements[i];
+		}
+		this.QueueElements=newQueueElements;
+	
+		this.start=0;
+		
 	}
 	
 	public void showQueue() {
