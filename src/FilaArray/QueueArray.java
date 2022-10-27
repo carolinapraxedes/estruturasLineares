@@ -1,5 +1,6 @@
 package FilaArray;
 
+
 public class QueueArray implements IQueue{
 	int sizeArray;
 	int start=0;
@@ -31,7 +32,7 @@ public class QueueArray implements IQueue{
 		}
 
 		QueueElements[start]=null;
-		start +=1;
+		start =(start +1 )%sizeArray;
 		return QueueElements;
 	}
 
@@ -50,14 +51,17 @@ public class QueueArray implements IQueue{
 		Object newQueueElements[]= new Object[newSize];
 		//atualizando a posição do end no novo array
 		this.end = QueueElements.length-1;
-		this.start=0;
+		sizeArray=newSize;
 		
+		int temp = start;
 		for(int i=0;i<this.end;i++) {
-			newQueueElements[i]=this.QueueElements[i];
+			newQueueElements[i]=this.QueueElements[temp];
+			temp =(temp+1) % QueueElements.length;
 		}
+		this.start=0;
 		this.QueueElements=newQueueElements;
 	
-		this.start=0;
+
 		
 	}
 	
@@ -72,3 +76,5 @@ public class QueueArray implements IQueue{
 
 
 }
+
+
