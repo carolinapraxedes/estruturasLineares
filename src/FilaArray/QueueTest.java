@@ -17,8 +17,7 @@ public class QueueTest {
 		newQueue.Enqueue("5");
 		newQueue.Enqueue("6");		
 		newQueue.Enqueue("7");
-		newQueue.Enqueue("mais um");
-		
+		newQueue.Enqueue("mais um");		
 		newQueue.showQueue();
 	}
 }
