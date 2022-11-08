@@ -1,11 +1,13 @@
 package PilhaDuasFIlas;
 
 public interface IStackDoubleQueue {
+	public abstract int sizeQueue();
+	public abstract boolean isEmptyQueue();
+	
 	/*Primeira fila*/
 	public abstract void EnqueueFirst(Object element);
 	public abstract Object DequeueFirst() throws emptyStackDQException;
-	public abstract int sizeQueue();
-	public abstract boolean isEmptyQueue();
+	
 	
 	
 	/*Segundo fila*/

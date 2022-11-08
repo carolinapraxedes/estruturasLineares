@@ -1,68 +1,84 @@
 package PilhaDuasFIlas;
 
-import FilaArray.emptyQueueException;
 
 public class StackDoubleQueue implements IStackDoubleQueue {
 	
 	int sizeArray;
+	
 	int start=0;
-	int end=0;	
+	int end=0;
+	
+	int endF;
+	int endL=0;
+
+	
 	Object StackDB[];
 	
 	
 	public StackDoubleQueue(int sizeArray) {
 		this.StackDB = new Object[sizeArray];
 		this.sizeArray = sizeArray;
-	}
+		this.endL=-1;
 
-/*=========================================
- *  STACK FIRST
- * */
+	}
 	
-	public void EnqueueFirst(Object element) {
-		//enfileirar
-		if(sizeQueue() == sizeArray-1) {
-			throw new emptyStackDQException("Pilha vazia");
-		}
-		this.StackDB[end] = element;
-		end = (end+1) % sizeArray;
-	}
-
-
-	public Object DequeueFirst() throws emptyStackDQException {
-		//desenfileirar
-		if(isEmptyQueue()) {
-			throw new emptyStackDQException("Pilha vazia");
-		}
-
-		StackDB[start]=null;
-		start =(start +1 )%sizeArray;
-		return StackDB;
-	}
-
-
 	public int sizeQueue() {
 		return (sizeArray - start + end) % sizeArray;
 	}
+	
 
 
 	public boolean isEmptyQueue() {
-		return (start==end);
 		
+		//verifico se o inicio esta na mesmo lugar do final da segunda fila 
+		return (start==endL);
+		
+	}
+	/*============================================================
+	 * Primeira fila
+	 * */
+
+	
+	@Override
+	public Object EnqueueFirst(Object element) {
+		// enfileirar
+		
+		if(sizeQueue() == sizeArray-1) {
+			System.out.println("ta cheiA");
+		}
+		Object temp = StackDB[endF];
+		this.StackDB[endF] = element;
+		this.endF= this.endF+1;
+		
+		
+	}
+		
+	
+	
+	@Override
+	public Object DequeueFirst() throws emptyStackDQException {
+		//desenfileirar
+		if(isEmptyQueue()) {
+			throw new emptyStackDQException("Fila vazia");
+		}
+
+		StackDB[endF]=null;
+		this.endF= this.endF-1;
+		return StackDB;
 	}
 	
 	
-	/*=========================================
-	 * STACK LAST
+	/*============================================================
+	 * Segunda fila
 	 * */
-
-
+	
+	@Override
 	public void EnqueueLast(Object element) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
+	
+	@Override
 	public Object DequeueLast() throws emptyStackDQException {
 		// TODO Auto-generated method stub
 		return null;
@@ -79,5 +95,7 @@ public class StackDoubleQueue implements IStackDoubleQueue {
 			
 		}
 	}
+
+
 
 }

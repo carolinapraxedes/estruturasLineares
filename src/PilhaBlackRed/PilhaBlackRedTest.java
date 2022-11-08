@@ -10,13 +10,10 @@ public class PilhaBlackRedTest {
 		pilha.pushRed("é o vermelho");
 		pilha.pushRed("é o flamengo");
 		pilha.pushRed("é o flamengo");
-		pilha.pushRed("é o flamengo");
-		
-		
-		pilha.pushBlack("teste preto");
-		pilha.pushBlack("teste preto");
-		pilha.pushBlack("teste preto");
-		pilha.pushBlack("é o preto");
+		pilha.popRed();
+		pilha.popRed();
+		pilha.popRed();
+
 		
 
 		pilha.showPilha();
