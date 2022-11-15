@@ -19,7 +19,7 @@ public class ListaEncadeadaTeste {
 		System.out.println("===========================");
 		lista.remover("ac");
 		lista.showLista();
-		lista.adicionar("SP");
+		//lista.adicionar("SP");
 		lista.showLista();
 		System.out.println("Tamanho: "+lista.getTamanho());
 
