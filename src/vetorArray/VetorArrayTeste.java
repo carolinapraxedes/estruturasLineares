@@ -7,20 +7,20 @@ public class VetorArrayTeste {
 		//novoVetor.elemAtRank(1);
 		
 		novoVetor.insertAtRank(0, "1");
+
 		novoVetor.insertAtRank(1, "2");
 		novoVetor.insertAtRank(2, "3");
+		novoVetor.insertAtRank(3, "4");
+		novoVetor.insertAtRank(4, "SASARA");
+		novoVetor.insertAtRank(5, "SASUKE");
 		
-		novoVetor.insertAtRank(3, "ACHOU");
-		novoVetor.insertAtRank(4, "5");
-		novoVetor.insertAtRank(5, "6");
-		
-		novoVetor.removeAtRank(3);
-		//novoVetor.insertAtRank(2, "novo valor");
-		System.out.println(novoVetor.size()); 
-		System.out.println(novoVetor.isEmpty());
-		
-		//System.out.println(novoVetor.elemAtRank(0));
+		System.out.println(novoVetor.size());
 		novoVetor.showVetor();
+		
+		novoVetor.removeAtRank(5);
+		System.out.println(novoVetor.size());
+		novoVetor.showVetor();		
+
 	}
 
 }
