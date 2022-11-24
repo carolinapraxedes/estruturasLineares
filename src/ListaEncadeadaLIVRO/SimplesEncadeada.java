@@ -2,40 +2,72 @@ package ListaEncadeadaLIVRO;
 
 
 public class SimplesEncadeada {
-	protected Node primeiro;// no cabeça da lista(no inicial)
-	protected long tamanho;//numero de nos
-	protected Node ultimo;//no do rabo da lista(no final)
+	protected No primeiro;
+	protected int tamanho; //numeros de nos na lista
+	protected No ultimo;
 	
-	//cria uma lista vazia
 	public SimplesEncadeada() {
-		primeiro = null;
-		tamanho=0;
+		this.primeiro=null;
+		this.ultimo=null;
+		this.tamanho=0;
 	}
 	
-	
-	public void addFirst(Object newElement) {
-		Node newNode = new Node(newElement);
-		newNode.setNext(primeiro); //aponta para o no primeiro antigo
-		this.primeiro = newNode; //node primeiro aponta para novo no
-		tamanho++; //incrementa o no contador
-	}
-	
-	public void addLast(Node element) {
-		element.setNext(null); //o novo no aponta para null
-		ultimo.setNext(element);//no final ANTIGO aponta para o novo no
-		ultimo = element;// estou dizendo que o nofinal vai receber valor/conteudo do novo no
+	public void addPrimeiro(Object novoValorPrimeiro) {
+		No novoNoPrimeiro = new No(novoValorPrimeiro);
+		novoNoPrimeiro.setProximo(primeiro);
+		primeiro = novoNoPrimeiro;
 		tamanho++;
 	}
 	
-
-	
-	public void showLista() {
-		for(int i=0;i<tamanho;i++) {
-			//System.out.println(getElement());
+	public void addUltimo(Object novoValorUltimo) {
+		No novoNoUltimo = new No(novoValorUltimo);
+		No temp = primeiro;
+		while(temp.getProximo()!=null) {
+			temp = temp.getProximo();
+			//vai procurar pelo o ultimo novo
 		}
+		temp.setProximo(novoNoUltimo);
+		tamanho++;
 	}
 	
-
+	public void removePrimeiro() {
+		if(this.primeiro==null) {
+			System.out.println("A lista está vazia");
+		}
+		No temp = primeiro;
+		primeiro = primeiro.getProximo();
+		temp.setProximo(null);
+		tamanho--;
+		
+	}
+	public void removeUltimo() {
+		if(this.primeiro==null) {
+			System.out.println("A lista está vazia");
+		}
+		No penultimo = null;
+		No temp = primeiro;
+		while(temp.getProximo()!=null) {
+			//procura o ultimo
+			if(temp.getProximo().getProximo()==null) {
+				//procura penultimo
+				penultimo = temp;
+			}
+			temp = temp.getProximo();
+		}
+		penultimo.setProximo(null);
+		temp=null;
+		tamanho--;		
+	}
 	
+	
+	public void show() {
+		No temp = primeiro;
+		System.out.print("[");
+		while(temp!=null) {
+			System.out.print(" "+temp.getElemento()+" ");
+			temp = temp.getProximo();
+		}
+		System.out.print("]");
+	}
 	
 }

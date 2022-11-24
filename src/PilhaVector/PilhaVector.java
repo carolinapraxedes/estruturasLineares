@@ -50,6 +50,4 @@ public class PilhaVector implements IPilhaVector{
 			
 		}
 	}
-
-
 }
