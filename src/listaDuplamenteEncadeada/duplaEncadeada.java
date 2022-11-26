@@ -1,5 +1,7 @@
 package listaDuplamenteEncadeada;
 
+import listaEncadeada.No;
+
 public class duplaEncadeada {
 	protected int size; //qtd elementos
 	protected noDuplamente primeiro; //sentinelas
@@ -8,10 +10,9 @@ public class duplaEncadeada {
 	public duplaEncadeada(){
 		size = 0;
 		//criando os sentinelas
-		noDuplamente primeiro = new noDuplamente(null,null,null);
-		noDuplamente ultimo = new noDuplamente(null,null,null);
-		//apontando o primeiro para o ultimo
-		primeiro.setProximo(ultimo);		
+		primeiro = new noDuplamente(null);
+		ultimo = new noDuplamente(null);
+		primeiro.setProximo(ultimo);
 	}
 	
 	public int size() {
@@ -53,6 +54,77 @@ public class duplaEncadeada {
 		return noDesejado.getProximo();
 	}
 	
+	public void addFirst(Object elemento) {		
+		/*NOVO PRIMEIRO = NP
+		 *PROXIMO PRIMEIRO = X
+		 *PRIMEIRO = P
+		 *
+		 *  P --- NP --- X
+		 *	*/
+		noDuplamente novoPrimeiro = new noDuplamente(elemento);
+		noDuplamente proxPrimeiro = primeiro.getProximo();
+		
+		novoPrimeiro.setProximo(proxPrimeiro);
+		//o proximo de NP vai ser X
+		novoPrimeiro.setAnterior(primeiro);
+		//o anterior de NP vai ser P
+		
+		proxPrimeiro.setAnterior(novoPrimeiro);
+		//o anterior de X vai ser NP
+		primeiro.setProximo(novoPrimeiro);
+		//o proximo de P vai ser NP
+				
+		
+		size++;
+	}
+	
+	public void addBefore(Object antesNoElemento, Object NoElemento) {
+		//insire o z antes do v
+		//antesNo = v, No = z
+		
+		noDuplamente antesNo = procurar(antesNoElemento);
+		noDuplamente NoAtual = new noDuplamente(NoElemento);
+		
+				
+		noDuplamente temp = getAnterior(antesNo);
+		//estou pegando o No anterior do antesNo 
+		
+		//estou dizendo que noAtual vai anterior de anterior e prox de antesNo
+		NoAtual.setAnterior(temp);
+		NoAtual.setProximo(antesNo);
+		
+		//O noatual vai ser antes do noanterior e o temp vai ser proximo do no Atual
+		antesNo.setAnterior(NoAtual);
+		temp.setProximo(NoAtual);
+		size++;
+	}
+	
+
+	public noDuplamente procurar(Object elementoProcurado) {
+		noDuplamente procurado = this.primeiro;
+		while(procurado.getProximo()!=null) {
+			if(procurado.getElemento()==elementoProcurado) {
+				return procurado;
+			}
+			procurado = procurado.getProximo();
+		}
+		return null;
+	}
+	
+	public String toString() {
+		String s = "[";
+		noDuplamente v = primeiro.getProximo();
+		while(v!=ultimo) {
+			s+=v.getElemento();
+			v=v.getProximo();
+			if(v!=ultimo) {
+				s+=", ";
+			}
+		}
+		s+="]";
+		
+		return s;
+	}
 	
 	
 	

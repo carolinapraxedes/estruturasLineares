@@ -5,7 +5,7 @@ public class noDuplamente {
 	private noDuplamente proximo;
 	private noDuplamente anterior;
 	
-	public noDuplamente(Object novoElemento,noDuplamente prox,noDuplamente ant) {
+	public noDuplamente(Object novoElemento) {
 		elemento = novoElemento;
 		this.proximo=null;
 		this.anterior=null;
@@ -33,5 +33,10 @@ public class noDuplamente {
 	
 	public void setProximo(noDuplamente novoProximo) {
 		proximo = novoProximo;
+	}
+	
+	public String toString() {
+		
+		return getElemento().toString();
 	}
 }
