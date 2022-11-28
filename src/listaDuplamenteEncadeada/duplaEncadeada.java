@@ -1,6 +1,6 @@
 package listaDuplamenteEncadeada;
 
-import listaEncadeada.No;
+
 
 public class duplaEncadeada {
 	protected int size; //qtd elementos
@@ -23,6 +23,10 @@ public class duplaEncadeada {
 		return (size==0);
 	}
 	
+	/*
+	 * ========= PEGAR PRIMEIRO, ULTIMO, ANTERIOR E PROXIMO ==============
+	 * */
+	
 	public noDuplamente getPrimeiro() {
 		//pega primeiro no da lista
 		if(isEmpty()) {
@@ -39,8 +43,9 @@ public class duplaEncadeada {
 		return ultimo.getAnterior();
 	}
 	
-	//vai pegar o no anterior do no que foi passado por parametro
+	
 	public noDuplamente getAnterior(noDuplamente noDesejado){
+		//vai pegar o no anterior do no que foi passado por parametro
 		if(noDesejado == primeiro) {
 			System.out.println("não existe um no anterior do primeiro");
 		}
@@ -53,6 +58,10 @@ public class duplaEncadeada {
 		}
 		return noDesejado.getProximo();
 	}
+	
+	/*
+	 * ============== add e remover ================
+	 * */
 	
 	public void addFirst(Object elemento) {		
 		/*NOVO PRIMEIRO = NP
@@ -73,33 +82,133 @@ public class duplaEncadeada {
 		//o anterior de X vai ser NP
 		primeiro.setProximo(novoPrimeiro);
 		//o proximo de P vai ser NP
-				
-		
+						
 		size++;
 	}
 	
-	public void addBefore(Object antesNoElemento, Object NoElemento) {
-		//insire o z antes do v
-		//antesNo = v, No = z
+	public void addLast(Object elemento) {
+		noDuplamente novoUltimo = new noDuplamente(elemento);
+		noDuplamente anteriorUltimo = ultimo.getAnterior();
 		
-		noDuplamente antesNo = procurar(antesNoElemento);
-		noDuplamente NoAtual = new noDuplamente(NoElemento);
+		novoUltimo.setAnterior(anteriorUltimo);
+		novoUltimo.setProximo(ultimo);
 		
-				
-		noDuplamente temp = getAnterior(antesNo);
-		//estou pegando o No anterior do antesNo 
+		anteriorUltimo.setProximo(novoUltimo);
+		ultimo.setAnterior(novoUltimo);
 		
-		//estou dizendo que noAtual vai anterior de anterior e prox de antesNo
-		NoAtual.setAnterior(temp);
-		NoAtual.setProximo(antesNo);
-		
-		//O noatual vai ser antes do noanterior e o temp vai ser proximo do no Atual
-		antesNo.setAnterior(NoAtual);
-		temp.setProximo(NoAtual);
 		size++;
 	}
-	
 
+	public void removeFirst() {
+		if(isEmpty()) {
+			System.out.println("A lista está vazia");
+		}
+		noDuplamente removerPrimeiro = primeiro.getProximo();
+		noDuplamente proxRemoverPrimeiro = removerPrimeiro.getProximo();
+		
+		primeiro.setProximo(proxRemoverPrimeiro);
+		proxRemoverPrimeiro.setAnterior(primeiro);
+		
+		
+		removerPrimeiro.setAnterior(null);
+		removerPrimeiro.setProximo(null);
+		
+		size--;
+	}
+	
+	public void removeLast() {
+		if(isEmpty()) {
+			System.out.println("A lista está vazia");
+		}
+		noDuplamente removido = ultimo.getAnterior();
+		noDuplamente antesRemovido = removido.getAnterior();
+		
+		ultimo.setAnterior(antesRemovido);
+		antesRemovido.setProximo(ultimo);
+		
+		removido.setAnterior(null);
+		removido.setProximo(null);
+		
+		size--;
+	}
+	
+	/*======== REMOVER UM NO ESPECIFICO ==============
+	 * */
+	public void remove(noDuplamente noRemover) {
+		noDuplamente anteriorRemover = noRemover.getAnterior();
+		noDuplamente proximoRemover = noRemover.getProximo();
+		
+
+		//modificando as conexões dos nos envolvidos
+		proximoRemover.setAnterior(anteriorRemover);
+		anteriorRemover.setProximo(proximoRemover);
+		
+		//removendo as conexões do no
+		noRemover.setAnterior(null);
+		noRemover.setProximo(null);
+		
+		
+		size--;
+	}
+	
+	/*
+	 * ==================== addBefore e addAfter ================================
+	 * */
+	
+	public void addAfter(noDuplamente noAtual, noDuplamente noNovo) {
+		//vai adicionar o noNovo depois do noAtual
+		noDuplamente proxAtual = noAtual.getProximo();
+		
+		//conectando o novo novo
+		noNovo.setAnterior(noAtual);
+		noNovo.setProximo(proxAtual);
+		
+		//modificando as conexões dos outro nos envolvidos
+		proxAtual.setAnterior(noNovo);
+		noAtual.setAnterior(noNovo);
+		
+		
+		size++;
+	}
+	
+	public void addBefore(noDuplamente noAtual, noDuplamente noNovo) {
+		//vai adicionar o noNovo antes do noAtual
+		
+		noDuplamente anteriorAtual = noAtual.getAnterior();
+		//pegando o anterior do no atual
+		
+		//fazendo as conexões do novo No
+		noNovo.setAnterior(anteriorAtual);
+		noNovo.setProximo(noAtual);
+		
+		//Modificando as conexões dos nos envolvidos
+		noAtual.setAnterior(noNovo);
+		anteriorAtual.setProximo(noNovo);
+
+		
+		size++;
+	}
+	
+	
+	/*
+	 * ========================== tem proximo ou anterior ===============
+	 * */
+	
+	public boolean hasAnterior(noDuplamente noDesejado) {
+		//verifica se o no passado tem anterior ou nao
+		return noDesejado!=primeiro;
+	}
+	
+	public boolean hasProximo(noDuplamente noDesejado) {
+		//verifica se o no passado tem proximo ou nao
+		return noDesejado!=ultimo;
+	}
+
+	
+	
+	/*
+	 * ========= PRINT========
+	 * */
 	public noDuplamente procurar(Object elementoProcurado) {
 		noDuplamente procurado = this.primeiro;
 		while(procurado.getProximo()!=null) {
@@ -112,18 +221,18 @@ public class duplaEncadeada {
 	}
 	
 	public String toString() {
-		String s = "[";
-		noDuplamente v = primeiro.getProximo();
-		while(v!=ultimo) {
-			s+=v.getElemento();
-			v=v.getProximo();
-			if(v!=ultimo) {
-				s+=", ";
+		String imprimir = "[";
+		noDuplamente primeiroNo = primeiro.getProximo();
+		while(primeiroNo!=ultimo) {
+			imprimir+=primeiroNo.getElemento();
+			primeiroNo=primeiroNo.getProximo();
+			if(primeiroNo!=ultimo) {
+				imprimir+=", ";
 			}
 		}
-		s+="]";
+		imprimir+="]";
 		
-		return s;
+		return imprimir;
 	}
 	
 	

@@ -15,11 +15,30 @@ public class duplaEncadeadaTeste {
 		a.addFirst("PRIMEIRO");
 		a.addFirst("NOVOPRIMEIRO");
 		a.addFirst("BLAUBLAU");
-		System.out.println(a.procurar("BLAUBLAU"));
-		a.procurar("BLAUBLAU");
-		//a.addBefore();
 		
 		System.out.println(a);
+		//a.procurar("BLAUBLAU");
+		//a.addBefore();
+		System.out.println(a.getUltimo());
+		a.addLast("vai ser o ultimo");
+		a.addLast("NOVO ULTIMO");
+		System.out.println(a);
+		System.out.println(a.size());
+		
+		a.removeLast();
+		System.out.println(a);
+		System.out.println(a.size());
+		
+		a.removeLast();
+		System.out.println(a);
+		System.out.println(a.getUltimo());
+		System.out.println(a.size());
+		
+		a.removeFirst();
+		System.out.println(a);
+		System.out.println(a.getPrimeiro());
+		System.out.println(a.size());
+
 
 
 	}
