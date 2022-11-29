@@ -12,7 +12,8 @@ public class duplaEncadeadaTeste {
 		System.out.println(a.isEmpty()); 
 		a.getPrimeiro();
 		a.getUltimo();
-		a.addFirst("PRIMEIRO");
+		noDuplamente n1 = a.addFirst("PRIMEIRO");
+		
 		a.addFirst("NOVOPRIMEIRO");
 		a.addFirst("BLAUBLAU");
 		
