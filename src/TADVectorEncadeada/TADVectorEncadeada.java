@@ -1,45 +1,56 @@
 package TADVectorEncadeada;
 
 import listaDuplamenteEncadeada.duplaEncadeada;
+import listaDuplamenteEncadeada.noDuplamente;
 
-public class TADVectorEncadeada implements IVetorArray {
+public class TADVectorEncadeada implements IVectorEncadeado {
+	int tamanho;
 	duplaEncadeada lista = new duplaEncadeada();
 	
+	public TADVectorEncadeada() {
+		tamanho=0;
+	}
+	
 	
 	@Override
-	public Object elemAtRank(Integer indice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object elemAtRank(noDuplamente noIndice) {		
+		return noIndice.getElemento();
 	}
 
 	@Override
-	public Object replaceAtRank(Integer indice, Object elemento) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object replaceAtRank(noDuplamente noIndice, Object elemento) {
+	
+		noIndice.setElemento(elemento);
+		return noIndice.getElemento();
 	}
 
 	@Override
-	public void insertAtRank(Integer indice, Object elemento) {
-		// TODO Auto-generated method stub
+	public Object insertAtRank(noDuplamente noIndice, Object elemento) {
+		noIndice.setElemento(elemento);
+		tamanho++;
+		return noIndice.getElemento();
+		
 		
 	}
 
 	@Override
-	public Object removeAtRank(Integer indice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object removeAtRank(noDuplamente noIndice) {
+		noDuplamente remove = noIndice;
+		lista.remove(noIndice);
+		tamanho--;
+		
+		return remove.getElemento();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return tamanho;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+
+		return tamanho==0;
 	}
 
 }

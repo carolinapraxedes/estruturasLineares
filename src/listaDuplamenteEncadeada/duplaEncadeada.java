@@ -89,7 +89,7 @@ public class duplaEncadeada {
 		return novoPrimeiro;
 	}
 	
-	public void addLast(Object elemento) {
+	public noDuplamente addLast(Object elemento) {
 		noDuplamente novoUltimo = new noDuplamente(elemento);
 		noDuplamente anteriorUltimo = ultimo.getAnterior();
 		
@@ -100,6 +100,8 @@ public class duplaEncadeada {
 		ultimo.setAnterior(novoUltimo);
 		
 		size++;
+		
+		return novoUltimo;
 	}
 
 	public void removeFirst() {
@@ -158,7 +160,7 @@ public class duplaEncadeada {
 	 * ==================== addBefore e addAfter ================================
 	 * */
 	
-	public void addAfter(noDuplamente noAtual, noDuplamente noNovo) {
+	public noDuplamente addAfter(noDuplamente noAtual, noDuplamente noNovo) {
 		//vai adicionar o noNovo depois do noAtual
 		noDuplamente proxAtual = noAtual.getProximo();
 		
@@ -168,13 +170,15 @@ public class duplaEncadeada {
 		
 		//modificando as conexões dos outro nos envolvidos
 		proxAtual.setAnterior(noNovo);
-		noAtual.setAnterior(noNovo);
+		noAtual.setProximo(noNovo);
 		
 		
 		size++;
+		
+		return noNovo;
 	}
 	
-	public void addBefore(noDuplamente noAtual, noDuplamente noNovo) {
+	public noDuplamente addBefore(noDuplamente noAtual, noDuplamente noNovo) {
 		//vai adicionar o noNovo antes do noAtual
 		
 		noDuplamente anteriorAtual = noAtual.getAnterior();
@@ -190,6 +194,7 @@ public class duplaEncadeada {
 
 		
 		size++;
+		return noNovo;
 	}
 	
 	
