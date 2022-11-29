@@ -13,6 +13,7 @@ public class duplaEncadeada {
 		primeiro = new noDuplamente(null);
 		ultimo = new noDuplamente(null);
 		primeiro.setProximo(ultimo);
+		ultimo.setAnterior(primeiro);
 	}
 	
 	public int size() {
@@ -63,7 +64,7 @@ public class duplaEncadeada {
 	 * ============== add e remover ================
 	 * */
 	
-	public void addFirst(Object elemento) {		
+	public noDuplamente addFirst(Object elemento) {		
 		/*NOVO PRIMEIRO = NP
 		 *PROXIMO PRIMEIRO = X
 		 *PRIMEIRO = P
@@ -84,6 +85,8 @@ public class duplaEncadeada {
 		//o proximo de P vai ser NP
 						
 		size++;
+		
+		return novoPrimeiro;
 	}
 	
 	public void addLast(Object elemento) {
