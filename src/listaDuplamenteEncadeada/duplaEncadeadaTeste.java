@@ -16,6 +16,9 @@ public class duplaEncadeadaTeste {
 		
 		System.out.println(a.hasProximo(no4));
 		System.out.println(a);
+		
+		a.remove(no4);
+		System.out.println(a);
 
 		
 		//noDuplamente no5="ALGO";

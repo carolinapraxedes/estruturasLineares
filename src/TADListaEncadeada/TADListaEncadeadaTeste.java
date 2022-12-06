@@ -8,13 +8,13 @@ public class TADListaEncadeadaTeste {
 		TADListaEncadeada lista = new TADListaEncadeada();
 		noDuplamente no1 = lista.insertFirst("BORA");
 		noDuplamente no2 = lista.insertFirst("BRASIL");
-		lista.insertLast("HEXA");
-		lista.insertLast("2022");
+		noDuplamente no3 = lista.insertLast("HEXA");
+		noDuplamente no4 = lista.insertLast("2022");
 		
 		System.out.println(lista);
-		
-		lista.swapElements(no2, no1);
+		lista.remove(no4);
 		System.out.println(lista);
+
 
 	}
 

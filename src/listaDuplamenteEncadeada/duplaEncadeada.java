@@ -149,8 +149,8 @@ public class duplaEncadeada {
 		anteriorRemover.setProximo(proximoRemover);
 		
 		//removendo as conexões do no
-		noRemover.setAnterior(null);
-		noRemover.setProximo(null);
+		//noRemover.setAnterior(null);
+		//noRemover.setProximo(null);
 		
 		
 		size--;

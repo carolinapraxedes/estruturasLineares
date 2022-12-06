@@ -24,12 +24,12 @@ public interface ITADLista {
 	public void swapElements(noDuplamente noAtual,noDuplamente noDesejado);
 	//troca posição
 	
-	public void insertBefore(noDuplamente no,Object elemento);
+	public noDuplamente insertBefore(noDuplamente no,Object elemento);
 	
-	public void insertAfter(noDuplamente no,Object elemento);
+	public noDuplamente insertAfter(noDuplamente no,Object elemento);
 	
 	public noDuplamente insertFirst(Object elemento);
 	
-	public void insertLast(Object elemento);
-	public void remove(noDuplamente no);
+	public noDuplamente insertLast(Object elemento);
+	public Object remove(noDuplamente no);
 }

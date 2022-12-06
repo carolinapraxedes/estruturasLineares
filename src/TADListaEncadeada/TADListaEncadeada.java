@@ -14,6 +14,9 @@ public class TADListaEncadeada implements ITADLista {
 		this.lista = new duplaEncadeada();
 		this.primeiro = new noDuplamente(null);
 		this.ultimo = new noDuplamente(null);
+		
+		primeiro.setProximo(ultimo);
+		ultimo.setAnterior(primeiro);
 		this.tamanho=0;
 	}
 
@@ -74,27 +77,44 @@ public class TADListaEncadeada implements ITADLista {
 
 	@Override
 	public void swapElements(noDuplamente noAtual, noDuplamente noDesejado) {
-		/*noDesejado.setProximo(noAtual);
-		noAtual.setAnterior(noDesejado);*/
+		Object elementoAtual = noAtual.getElemento();
+		noAtual.setElemento(noDesejado.getElemento());
+		noDesejado.setElemento(elementoAtual);
 		
-		
-		
-		
+								
 	}
-	
 	
 	
 	
 
 	@Override
-	public void insertBefore(noDuplamente no, Object elemento) {
-		// TODO Auto-generated method stub
+	public noDuplamente insertBefore(noDuplamente no, Object elemento) {
+		//BEFORE = ANTES
+		noDuplamente novoNo = new noDuplamente(elemento);
+		novoNo.setElemento(elemento);
+		
+		novoNo.setAnterior(no);
+		novoNo.setProximo(no.getProximo());
+		
+		(no.getProximo()).setAnterior(novoNo);
+		
+		return novoNo;
 		
 	}
 
 	@Override
-	public void insertAfter(noDuplamente no, Object elemento) {
-		// TODO Auto-generated method stub
+	public noDuplamente insertAfter(noDuplamente no, Object elemento) {
+		//AFTER = DEPOIS
+		noDuplamente novoNo = new noDuplamente(elemento);
+		novoNo.setElemento(elemento);
+		
+		novoNo.setAnterior(no);
+		novoNo.setProximo(no.getProximo());
+		
+		(no.getProximo()).setAnterior(novoNo);
+		no.setProximo(novoNo);
+		
+		return novoNo;
 		
 	}
 
@@ -110,21 +130,32 @@ public class TADListaEncadeada implements ITADLista {
 	}
 
 	@Override
-	public void insertLast(Object elemento) {
+	public noDuplamente insertLast(Object elemento) {
 		noDuplamente novoNo = new noDuplamente(elemento);
 		lista.addLast(elemento);
 		novoNo.setProximo(ultimo);		
 		ultimo.setAnterior(novoNo);
 		
+		return novoNo;
+		
 	}
 
 	@Override
-	public void remove(noDuplamente no) {
-		noDuplamente noAnt = no.getAnterior();
-		noDuplamente noProx = no.getProximo();
+	public Object remove(noDuplamente no) {
+		Object temp = no.getElemento();
 		
-		noAnt.setProximo(noProx);
-		noProx.setAnterior(noAnt);
+		noDuplamente anteriorRemover = no.getAnterior();
+		noDuplamente proximoRemover = no.getProximo();
+		
+
+		//modificando as conexões dos nos envolvidos
+		proximoRemover.setAnterior(anteriorRemover);
+		anteriorRemover.setProximo(proximoRemover);
+		
+		no.setAnterior(null);
+		no.setProximo(null);
+		
+		return temp;
 		
 	}
 	
