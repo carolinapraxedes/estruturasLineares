@@ -93,10 +93,16 @@ public class TADListaEncadeada implements ITADLista {
 		noDuplamente novoNo = new noDuplamente(elemento);
 		novoNo.setElemento(elemento);
 		
-		novoNo.setAnterior(no);
-		novoNo.setProximo(no.getProximo());
+		noDuplamente noAnterior = no.getAnterior();
+		noDuplamente noProximo = no.getProximo();
 		
-		(no.getProximo()).setAnterior(novoNo);
+		novoNo.setAnterior(noAnterior);
+		novoNo.setProximo(no);
+		
+		no.setAnterior(novoNo);
+		noAnterior.setProximo(novoNo);
+		
+		
 		
 		return novoNo;
 		
@@ -121,9 +127,15 @@ public class TADListaEncadeada implements ITADLista {
 	@Override
 	public noDuplamente insertFirst(Object elemento) {
 		noDuplamente novoNo = new noDuplamente(elemento);
-		lista.addFirst(novoNo);
-		primeiro.setProximo(novoNo);		
+		noDuplamente proximoPrimeiro = primeiro.getProximo();
+		
 		novoNo.setAnterior(primeiro);
+		novoNo.setProximo(primeiro.getProximo());
+		
+		proximoPrimeiro.setAnterior(novoNo);
+		
+		
+		primeiro.setProximo(novoNo);		
 		
 		return novoNo;
 		
@@ -132,8 +144,12 @@ public class TADListaEncadeada implements ITADLista {
 	@Override
 	public noDuplamente insertLast(Object elemento) {
 		noDuplamente novoNo = new noDuplamente(elemento);
-		lista.addLast(elemento);
-		novoNo.setProximo(ultimo);		
+		noDuplamente anteriorUltimo = ultimo.getAnterior();
+		
+		novoNo.setProximo(ultimo);
+		novoNo.setAnterior(anteriorUltimo);
+		
+		anteriorUltimo.setProximo(novoNo);
 		ultimo.setAnterior(novoNo);
 		
 		return novoNo;
@@ -144,24 +160,29 @@ public class TADListaEncadeada implements ITADLista {
 	public Object remove(noDuplamente no) {
 		Object temp = no.getElemento();
 		
-		noDuplamente anteriorRemover = no.getAnterior();
-		noDuplamente proximoRemover = no.getProximo();
+		noDuplamente anteriorNo = no.getAnterior();
+		noDuplamente proximoNo = no.getProximo();
 		
-
-		//modificando as conexões dos nos envolvidos
-		proximoRemover.setAnterior(anteriorRemover);
-		anteriorRemover.setProximo(proximoRemover);
-		
-		no.setAnterior(null);
-		no.setProximo(null);
+		anteriorNo.setProximo(proximoNo);
+		proximoNo.setAnterior(anteriorNo);
 		
 		return temp;
 		
 	}
 	
-	public String toString(){
-		return lista.toString();
+	public String toString() {
+		String imprimir = "[";
+		noDuplamente primeiroNo = primeiro.getProximo();
+		while(primeiroNo!=ultimo) {
+			imprimir+=primeiroNo.getElemento();
+			primeiroNo=primeiroNo.getProximo();
+			if(primeiroNo!=ultimo) {
+				imprimir+=", ";
+			}
+		}
+		imprimir+="]";
 		
+		return imprimir;
 	}
 
 }

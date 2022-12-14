@@ -12,7 +12,11 @@ public class TADListaEncadeadaTeste {
 		noDuplamente no4 = lista.insertLast("2022");
 		
 		System.out.println(lista);
-		lista.remove(no4);
+		//lista.insertBefore(no3, "ANTES DO HEXA");
+		lista.insertBefore(no1, "ANTES DO BORA");
+		//lista.insertAfter(no3,"teste");
+		
+		
 		System.out.println(lista);
 
 

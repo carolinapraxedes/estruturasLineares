@@ -11,7 +11,7 @@ public class noDuplamente {
 		this.anterior=null;
 	}
 	
-	public noDuplamente getElemento() {
+	public Object getElemento() {
 		return elemento;
 	}
 	
