@@ -22,7 +22,7 @@ public class TADListaEncadeada implements ITADLista {
 
 	@Override
 	public int size() {
-		return lista.size();
+		return this.tamanho;
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class TADListaEncadeada implements ITADLista {
 		no.setAnterior(novoNo);
 		noAnterior.setProximo(novoNo);
 		
-		
+		tamanho++;
 		
 		return novoNo;
 		
@@ -120,6 +120,7 @@ public class TADListaEncadeada implements ITADLista {
 		(no.getProximo()).setAnterior(novoNo);
 		no.setProximo(novoNo);
 		
+		tamanho++;
 		return novoNo;
 		
 	}
@@ -137,6 +138,8 @@ public class TADListaEncadeada implements ITADLista {
 		
 		primeiro.setProximo(novoNo);		
 		
+		tamanho++;
+		
 		return novoNo;
 		
 	}
@@ -152,6 +155,8 @@ public class TADListaEncadeada implements ITADLista {
 		anteriorUltimo.setProximo(novoNo);
 		ultimo.setAnterior(novoNo);
 		
+		tamanho++;
+		
 		return novoNo;
 		
 	}
@@ -165,6 +170,8 @@ public class TADListaEncadeada implements ITADLista {
 		
 		anteriorNo.setProximo(proximoNo);
 		proximoNo.setAnterior(anteriorNo);
+		
+		tamanho--;
 		
 		return temp;
 		

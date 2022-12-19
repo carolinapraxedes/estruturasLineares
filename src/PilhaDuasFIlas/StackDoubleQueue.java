@@ -40,7 +40,7 @@ public class StackDoubleQueue implements IStackDoubleQueue {
 
 	
 	@Override
-	public Object EnqueueFirst(Object element) {
+	public void EnqueueFirst(Object element) {
 		// enfileirar
 		
 		if(sizeQueue() == sizeArray-1) {
