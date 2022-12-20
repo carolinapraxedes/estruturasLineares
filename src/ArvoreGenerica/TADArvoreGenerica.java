@@ -12,9 +12,9 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 	 * elements
 	 * nos
 	 * height
-	 * depth
-	 * replace
-	 * remove
+	 * depth FALTA TESTAR
+	 * replace FALTA TESTAR
+	 * remove FALTA TESTAR
 
 	 * */
 	
