@@ -66,12 +66,14 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 	}
 	public int height(No desejado) {
 		if(isExternal(desejado)) {
-			return 0;
+		    return 0;
 		}
 		int h =0;
-
+		for(int i=0;i <((ArrayList)children(desejado)).size();i++){
+		    h=max(h,height((No)((ArrayList)children(desejado)).get(i)));
+		}
 		return 1+h;
-	}
+	    }
 	@Override
 	public int depth(No desejado) {
 		if(desejado == root) {
