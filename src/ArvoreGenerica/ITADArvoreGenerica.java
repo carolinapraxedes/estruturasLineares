@@ -5,7 +5,7 @@ import java.util.Iterator;
 public interface ITADArvoreGenerica<E> {
 	/*metodos genericos*/
 	public int size();
-	public int height();
+	public int height(No desejado);
 	public boolean isEmpty();
 	public Iterator<E> elements();
 	public Iterator<E> nos();

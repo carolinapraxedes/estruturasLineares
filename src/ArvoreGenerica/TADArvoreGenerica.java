@@ -2,6 +2,8 @@ package ArvoreGenerica;
 
 import java.util.Iterator;
 
+import listaDuplamenteEncadeada.noDuplamente;
+
 public class TADArvoreGenerica implements ITADArvoreGenerica{
 	No root;
 	int size = 0;
@@ -62,11 +64,13 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 	public boolean isRoot(No desejado) {
 		return desejado==root;
 	}
-	public int height() {
-		if(isExternal(No algo)) {
+	public int height(No desejado) {
+		if(isExternal(desejado)) {
 			return 0;
 		}
-		
+		int h =0;
+
+		return 1+h;
 	}
 	@Override
 	public int depth(No desejado) {
@@ -78,8 +82,9 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 
 	@Override
 	public Object replace(No desejado, Object elemento) {
-		// TODO Auto-generated method stub
-		return null;
+		No noRepassado = new No(desejado, elemento);
+		desejado.setElement(elemento);
+		return noRepassado;
 	}
 	@Override
 	public No addChild(No parent, Object element) {
@@ -92,9 +97,18 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 	}
 	@Override
 	public Object remove(No desejado) throws InvalidNoException {
-		// TODO Auto-generated method stub
-		return null;
+		No parent = desejado.getParent();
+		if(parent !=null || isExternal(desejado)) {
+			parent.removeChild(desejado);
+		}else {
+			throw new Exception;
+		}
+		Object removido = desejado.getElement();
+		size--;
+		return removido;
 	}
+
+
 	
 	
 }
