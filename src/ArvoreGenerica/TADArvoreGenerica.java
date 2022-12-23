@@ -1,10 +1,12 @@
 package ArvoreGenerica;
 
+import java.math.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import listaDuplamenteEncadeada.noDuplamente;
 
-public class TADArvoreGenerica implements ITADArvoreGenerica{
+public class TADArvoreGenerica {
 	No root;
 	int size = 0;
 	
@@ -47,6 +49,12 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Iterator preOrder(No desejado) {
+		
+	}
+	
+	
 	@Override
 	public Iterator children(No desejado) {
 		//retorna os filhos do no desejado
@@ -68,10 +76,10 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 		if(isExternal(desejado)) {
 		    return 0;
 		}
-		int h =0;
-		for(int i=0;i <((ArrayList)children(desejado)).size();i++){
-		    h=max(h,height((No)((ArrayList)children(desejado)).get(i)));
-		}
+			int h =0;
+			for(int i=0;i <((ArrayList)children(desejado)).size();i++){
+				h=Math.max(h,height((No)((ArrayList)children(desejado)).get(i)));
+			}
 		return 1+h;
 	    }
 	@Override
@@ -98,12 +106,12 @@ public class TADArvoreGenerica implements ITADArvoreGenerica{
 		
 	}
 	@Override
-	public Object remove(No desejado) throws InvalidNoException {
+	public Object remove(No desejado)  {
 		No parent = desejado.getParent();
 		if(parent !=null || isExternal(desejado)) {
 			parent.removeChild(desejado);
 		}else {
-			throw new Exception;
+			System.out.println("Deu ruim");
 		}
 		Object removido = desejado.getElement();
 		size--;
