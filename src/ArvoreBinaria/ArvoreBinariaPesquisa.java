@@ -1,6 +1,7 @@
 package ArvoreBinaria;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import ArvoreGenerica.No;
@@ -9,10 +10,8 @@ import ArvoreGenerica.No;
 public class ArvoreBinariaPesquisa {
 	protected NoBinario root;
 	protected int size;
+	private Comparator<Object> comparatorTree;
 	
-	//v= no
-	//k = elemento
-
 	
 	public ArvoreBinariaPesquisa() {
 		this.root=null;
@@ -27,37 +26,46 @@ public class ArvoreBinariaPesquisa {
 		return (size()==0);
 	}
 	
+	public boolean isExternal(NoBinario noDesejado) {
+		//verifica se ele nao tem filho
+		return noDesejado.getSonRight()==null && noDesejado.getSonLeft()==null;
+	}
+	
+	public boolean isInternal(NoBinario noDesejado) {
+		//verifica se tem um filho
+		return noDesejado.getSonLeft()!=null && noDesejado.getSonRight()!=null;
+	}
+	
+	public Comparator<Object> getComparatorTree() {
+		return comparatorTree;
+	}
+	
+	public Object compare(Object elementA, Object elementB) {
+		return comparatorTree.compare(elementA, elementB);
+	}
+
+	public void setComparatorTree(Comparator<Object> comparatorTree) {
+		this.comparatorTree = comparatorTree;
+	}
+	
+	
+	/*
 	public NoBinario root() {
 		return root;
 	}
-
 	
 	public boolean isRoot(NoBinario noDesejado) {
 		return noDesejado == root;
 	}
 	
 	public boolean isInternal(NoBinario noDesejado) {		
-		return noDesejado.getElement()>0;
+		return false;
 	}
 	
 	public boolean isExternal(NoBinario noDesejado) {
-		// TODO Auto-generated method stub
-		return false;
+		return noDesejado.getSonRight()==null && noDesejado.getSonLeft()==null;
 	}
-	public NoBinario leftChild(NoBinario noDesejado) {
-		return noDesejado.getSonLeft();
-	}
-	
-	public NoBinario rightChild(NoBinario noDesejado) {
-		return noDesejado.getSonRight();
-	}
-	public boolean hasLeft(NoBinario noDesejado) {
-		return noDesejado.getSonLeft();
-	}
-	
-	public boolean hasRight(NoBinario noDesejado) {
-		return noDesejado.getSonRight();
-	}
+
 
 
 	public NoBinario search(NoBinario noDesejado, int elemento) {
@@ -93,20 +101,24 @@ public class ArvoreBinariaPesquisa {
 	}
 
 	private boolean isSonRight(NoBinario novoNo) {
-		// TODO Auto-generated method stub
-		return false;
+		if(novoNo.getParent()==null) {
+			return false;
+		}
+		return novoNo.getElement();
 	}
 	
 	private boolean isSonLeft(NoBinario novoNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+	*/
 	public Object replace(NoBinario desejado, int elemento) {
 		NoBinario noRepassado = new NoBinario(elemento, desejado);
 		desejado.setElement(elemento);
 		return noRepassado;
 	}
+
+
 	
 
 	

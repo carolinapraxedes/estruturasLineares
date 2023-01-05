@@ -2,7 +2,7 @@ package ArvoreGenerica;
 
 public class ArvoreGenericaTeste {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ArvoreVaziaException {
 		TADArvoreGenerica arvore = new TADArvoreGenerica("A");
 		No B = arvore.addChild(arvore.root(), "B");
 		No C = arvore.addChild(arvore.root(), "C");
@@ -12,9 +12,15 @@ public class ArvoreGenericaTeste {
 		System.out.println(arvore.size);
 		System.out.println(arvore.parent(B));
 		
-		System.out.println(arvore.remove(D));
+		System.out.println(arvore.remove(B));
+
+		System.out.println(arvore.mostraArvore());
 		System.out.println(arvore.size);
 		System.out.println(arvore.height(E));
+		
+		System.out.println(arvore.mostraArvore());
+		System.out.println(arvore.nos());
+		System.out.println(arvore.elements());
 	}
 
 }

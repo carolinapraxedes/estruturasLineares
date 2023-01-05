@@ -34,17 +34,47 @@ public class TADArvoreGenerica {
 	}
 
 	public Iterator elements() {
-// TODO Auto-generated method stub
-		return null;
+		return mostraArvore();
+		
 	}
 
-	public Iterator nos() {
-// TODO Auto-generated method stub
-		return null;
+	public ArrayList<No> nos() {
+        ArrayList<No> Nos = new ArrayList<>();
+        // vai pra o método noRecursivo com os parâmetros (raiz e o array)
+        noRecursivo(root, Nos);
+        return Nos;
 	}
+	
+    private void noRecursivo(No node, ArrayList<No> Nos) {
+        // adiciona o "node" (no caso raiz) para o array para poder fazer o loop
+        Nos.add(node);
+        // mesmo loop de iterator
+        for (Iterator<Object> it = children(node); it.hasNext(); ) {
+            Object filho = it.next();
+            No noFilho = (No) filho;
+            noRecursivo(noFilho, Nos);
+        }
+    }
+    
+    public Iterator<Object> mostraArvore(){
+        mostraArvoreRecursivo(root, 0);
+        return null;
+    }
+    
+    private void mostraArvoreRecursivo(No node, int depth){
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ↳ ");
+        }
+        System.out.println(node.getElement());
+        // 'loop' para percorrer os filhos
+        for (Iterator<Object> it = children(node); it.hasNext(); ) {
+            Object filho = it.next();
+            No noFilho = (No) filho;
+            mostraArvoreRecursivo(noFilho, depth + 1);}
+        }
 
 	public Iterator children(No desejado) {
-//retorna os filhos do no desejado
+		//retorna os filhos do no desejado
 		return desejado.children();
 	}
 
