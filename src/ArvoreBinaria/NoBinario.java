@@ -7,9 +7,8 @@ public class NoBinario {
 	private NoBinario sonLeft,sonRight,parent;
 
 	
-	public NoBinario(int element, NoBinario parent) {
+	public NoBinario(int element) {
 		this.element= element;
-		this.parent = parent;
 		this.sonLeft = null;
 		this.sonRight = null;
 	}

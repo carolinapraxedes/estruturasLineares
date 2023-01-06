@@ -1,30 +1,21 @@
 package ArvoreBinaria;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-
-import ArvoreGenerica.No;
-
 
 public class ArvoreBinariaPesquisa {
 	protected NoBinario root;
 	protected int size;
-	private Comparator<Object> comparatorTree;
+	protected ArrayList<Integer> tree;
 	
 	
-	public ArvoreBinariaPesquisa() {
-		this.root=null;
-		this.size = 0;
+	
+	public ArvoreBinariaPesquisa(int elemento) {
+		this.root= new NoBinario(elemento);
+		this.size = 1;
+		this.tree= new ArrayList();
+		this.tree.add(root.getElement());
 	}
 	
-	public int size() {
-		return size;
-	}
-	
-	public boolean isEmpty() {
-		return (size()==0);
-	}
 	
 	public boolean isExternal(NoBinario noDesejado) {
 		//verifica se ele nao tem filho
@@ -35,25 +26,97 @@ public class ArvoreBinariaPesquisa {
 		//verifica se tem um filho
 		return noDesejado.getSonLeft()!=null && noDesejado.getSonRight()!=null;
 	}
-	
-	public Comparator<Object> getComparatorTree() {
-		return comparatorTree;
+
+
+	public NoBinario search(NoBinario noDesejado, int elemento) {
+		if(isExternal(noDesejado)) {
+			return noDesejado;
+		}else if(elemento < noDesejado.getElement()){
+			return search(noDesejado.getSonLeft(),elemento);
+		}else if(elemento == noDesejado.getElement()) {
+			return noDesejado;
+		}else if(elemento>noDesejado.getElement()) {
+			return search(noDesejado.getSonRight(),elemento);
+		}
+		return null;
+		
 	}
 	
-	public Object compare(Object elementA, Object elementB) {
-		return comparatorTree.compare(elementA, elementB);
+	
+	public NoBinario insert(int elemento) throws Exception {
+	    // 1º a gente pesquisa o nó que vai ser o pai do novo nó
+		NoBinario noParent = search(root, elemento);
+	    
+	    if (noParent == null)
+	        throw new Exception("tem que debuggar isso aqui");
+	    if (noParent.getElement() == elemento)
+	        throw new Exception("Valor já existe na árvore");
+	    
+	    // cria o novo nó e seta o nó encontrado como pai dele
+	    NoBinario novoNo = new NoBinario(elemento);
+	    tree.add(elemento);
+	    novoNo.setParent(noParent);
+	    
+	    if (isSonRight(novoNo))
+	        noParent.setSonRight(novoNo);
+	    else
+	        noParent.setSonLeft(novoNo);
+	    
+	    return novoNo;
+	}
+		
+
+	
+	private boolean isSonRight(NoBinario NoDesejado) {
+			
+		return NoDesejado.getParent().getElement() < NoDesejado.getElement();
+	}
+	
+	private boolean isSonLeft(NoBinario NoDesejado) {
+		
+		return NoDesejado.getParent().getElement() > NoDesejado.getElement();
 	}
 
-	public void setComparatorTree(Comparator<Object> comparatorTree) {
-		this.comparatorTree = comparatorTree;
+
+	public void inOrder(NoBinario NoDesejado) {
+		if(isInternal(NoDesejado)) {
+			inOrder(NoDesejado.getSonLeft());
+		}
+		System.out.println(NoDesejado.getElement());//visite
+		if(isInternal(NoDesejado)) {
+			inOrder(NoDesejado.getSonRight());
+		}
+	}
+	
+	public void show() {		
+			System.out.println(tree);
+
 	}
 	
 	
+
+
+	/*public NoBinario insert(int elemento) {
+		NoBinario NoProcurado = search(root,elemento);
+		if(NoProcurado.getElement()== elemento) {
+			System.out.println("deu ruim");
+		}else {
+			NoBinario novoNo = new NoBinario(elemento, NoProcurado);
+			novoNo.setParent(NoProcurado);
+			if(isSonRight(novoNo)) {
+				NoProcurado.setSonRight(novoNo);
+			}else {
+				NoProcurado.setSonLeft(novoNo);
+			}
+			return novoNo;
+		}			
+		return null;
+		
+	}*/
+	
+	
+
 	/*
-	public NoBinario root() {
-		return root;
-	}
-	
 	public boolean isRoot(NoBinario noDesejado) {
 		return noDesejado == root;
 	}
@@ -112,6 +175,19 @@ public class ArvoreBinariaPesquisa {
 		return false;
 	}
 	*/
+	
+	public int size() {
+		return size;
+	}
+	
+	public boolean isEmpty() {
+		return (size()==0);
+	}
+	
+	public NoBinario root() {
+		return root;
+	}
+	
 	public Object replace(NoBinario desejado, int elemento) {
 		NoBinario noRepassado = new NoBinario(elemento, desejado);
 		desejado.setElement(elemento);
