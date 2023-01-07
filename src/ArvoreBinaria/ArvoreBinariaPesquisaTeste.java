@@ -4,11 +4,16 @@ public class ArvoreBinariaPesquisaTeste {
 
 	public static void main(String[] args) throws Exception {
 		ArvoreBinariaPesquisa arvore = new ArvoreBinariaPesquisa(50);
-		NoBinario n14 =arvore.insert(7);
-		NoBinario n15 =arvore.insert(8);
-		NoBinario n16 =arvore.insert(45);
-		//NoBinario n17 =arvore.insert(66);
-		//NoBinario n18 =arvore.insert(69);
+			arvore.insert(7);
+			arvore.insert(8);
+			arvore.insert(45);
+			arvore.insert(66);
+			arvore.insert(71);
+			arvore.insert(85);
+			arvore.insert(41);
+			arvore.insert(65);
+	
+		//System.out.println(arvore.search(8,arvore.root));
 
 
 		

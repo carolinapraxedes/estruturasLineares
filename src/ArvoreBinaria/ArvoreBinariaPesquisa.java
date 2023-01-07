@@ -24,28 +24,32 @@ public class ArvoreBinariaPesquisa {
 	
 	public boolean isInternal(NoBinario noDesejado) {
 		//verifica se tem um filho
-		return noDesejado.getSonLeft()!=null && noDesejado.getSonRight()!=null;
+		return noDesejado.getSonRight() !=null && noDesejado.getSonLeft()!=null;
 	}
 
 
-	public NoBinario search(NoBinario noDesejado, int elemento) {
+	public NoBinario search( int elemento,NoBinario noDesejado,NoBinario noParent) {
+		if(noDesejado==null) {
+			return noParent;
+		}
+		//System.out.println(noDesejado.getElement());
 		if(isExternal(noDesejado)) {
 			return noDesejado;
 		}else if(elemento < noDesejado.getElement()){
-			return search(noDesejado.getSonLeft(),elemento);
+			return search(elemento,noDesejado.getSonLeft(),noDesejado);
 		}else if(elemento == noDesejado.getElement()) {
 			return noDesejado;
 		}else if(elemento>noDesejado.getElement()) {
-			return search(noDesejado.getSonRight(),elemento);
+			return search(elemento,noDesejado.getSonRight(),noDesejado);
 		}
 		return null;
 		
 	}
-	
+		
 	
 	public NoBinario insert(int elemento) throws Exception {
 	    // 1º a gente pesquisa o nó que vai ser o pai do novo nó
-		NoBinario noParent = search(root, elemento);
+		NoBinario noParent = search(elemento,root,null.);
 	    
 	    if (noParent == null)
 	        throw new Exception("tem que debuggar isso aqui");
@@ -61,6 +65,7 @@ public class ArvoreBinariaPesquisa {
 	        noParent.setSonRight(novoNo);
 	    else
 	        noParent.setSonLeft(novoNo);
+	    
 	    
 	    return novoNo;
 	}
@@ -79,18 +84,19 @@ public class ArvoreBinariaPesquisa {
 
 
 	public void inOrder(NoBinario NoDesejado) {
-		if(isInternal(NoDesejado)) {
+		if(NoDesejado.getSonLeft()!=null) {
 			inOrder(NoDesejado.getSonLeft());
 		}
-		System.out.println(NoDesejado.getElement());//visite
-		if(isInternal(NoDesejado)) {
+		System.out.print(NoDesejado.getElement()+" ");//visite
+		if(NoDesejado.getSonRight()!=null) {
 			inOrder(NoDesejado.getSonRight());
 		}
 	}
 	
-	public void show() {		
-			System.out.println(tree);
-
+	public void show() {
+		System.out.print("[");
+		inOrder(root);		
+		System.out.print("]");
 	}
 	
 	
