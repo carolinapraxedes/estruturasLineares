@@ -98,89 +98,11 @@ public class ArvoreBinariaPesquisa {
 		inOrder(root);		
 		System.out.print("]");
 	}
-	
-	
-
-
-	/*public NoBinario insert(int elemento) {
-		NoBinario NoProcurado = search(root,elemento);
-		if(NoProcurado.getElement()== elemento) {
-			System.out.println("deu ruim");
-		}else {
-			NoBinario novoNo = new NoBinario(elemento, NoProcurado);
-			novoNo.setParent(NoProcurado);
-			if(isSonRight(novoNo)) {
-				NoProcurado.setSonRight(novoNo);
-			}else {
-				NoProcurado.setSonLeft(novoNo);
-			}
-			return novoNo;
-		}			
-		return null;
 		
-	}*/
 	
-	
-
-	/*
 	public boolean isRoot(NoBinario noDesejado) {
 		return noDesejado == root;
-	}
-	
-	public boolean isInternal(NoBinario noDesejado) {		
-		return false;
-	}
-	
-	public boolean isExternal(NoBinario noDesejado) {
-		return noDesejado.getSonRight()==null && noDesejado.getSonLeft()==null;
-	}
-
-
-
-	public NoBinario search(NoBinario noDesejado, int elemento) {
-		if(isExternal(noDesejado)) {
-			return noDesejado;
-		}else if(elemento < noDesejado.getElement()){
-			return search(noDesejado.getSonLeft(),elemento);
-		}else if(elemento == noDesejado.getElement()) {
-			return noDesejado;
-		}else if(elemento>noDesejado.getElement()) {
-			return search(noDesejado.getSonRight(),elemento);
-		}
-		return null;
-		
-	}
-	
-	public NoBinario insert(int elemento) {
-		NoBinario NoProcurado = search(root,elemento);
-		if(NoProcurado.getElement()== elemento) {
-			System.out.println("deu ruim");
-		}else {
-			NoBinario novoNo = new NoBinario(elemento, NoProcurado);
-			novoNo.setParent(NoProcurado);
-			if(isSonRight(novoNo)) {
-				NoProcurado.setSonRight(novoNo);
-			}else {
-				NoProcurado.setSonLeft(novoNo);
-			}
-			return novoNo;
-		}			
-		return null;
-		
-	}
-
-	private boolean isSonRight(NoBinario novoNo) {
-		if(novoNo.getParent()==null) {
-			return false;
-		}
-		return novoNo.getElement();
-	}
-	
-	private boolean isSonLeft(NoBinario novoNo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	*/
+	}		
 	
 	public int size() {
 		return size;
@@ -194,11 +116,7 @@ public class ArvoreBinariaPesquisa {
 		return root;
 	}
 	
-	public Object replace(NoBinario desejado, int elemento) {
-		NoBinario noRepassado = new NoBinario(elemento, desejado);
-		desejado.setElement(elemento);
-		return noRepassado;
-	}
+
 
 
 	
